@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require('path');
+const axios = require('axios');
 
 const app = express();
 app.use(express.static(path.join(__dirname, '../frontend/build')));
@@ -15,20 +16,18 @@ app.get('/', (req, res) => {
 
 })
 // Endpoint to handle the consolidated POST request
-app.post('/process', (req, res) => {
+app.post('/process', async (req, res) => {
     try {
-      const { formData } = req.body;
-      console.log(req.body);
-      console.log(formData);
-        
-      // // Send a GET request to the algorithm service to retrieve the result
-      // const algorithmResponse = await axios.get('http://localhost:4001/process');
-
-      // res.send(algorithmResponse);
+      const data = req.body;
+      console.log(data);
+      // Send a GET request to the algorithm service to retrieve the result
+      const algorithmResponse = await axios.post('http://127.0.0.1:4001/process', {data});
+      console.log(algorithmResponse)
+      res.send(algorithmResponse);
   
     } catch (error) {
-      // console.error('Error processing request:', error);
-      // res.status(500).json({ error: 'An error occurred while processing the request.' });
+      console.error('Error processing request:', error);
+      res.status(500).json({ error: 'An error occurred while processing the request.' });
     }
   });
 

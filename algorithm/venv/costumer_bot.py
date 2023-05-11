@@ -1,13 +1,15 @@
 import openai
 import os
+from dotenv import load_dotenv
+load_dotenv()  # Load environment variables from .env file
 
 #needs to save as os eviorment parameter
-openai.api_key = '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'
+openai.api_key = os.getenv('API_KEY')
 
 #Simulate the JS form parameters
-parms = { 'company':'cable company', 
-         'problem':' fault that the converter does not turn on', 
-         'Characteristics':'adult does not understand technology'}
+#parms = { 'company':'cable company', 
+#         'problem':' fault that the converter does not turn on', 
+#         'Characteristics':'adult does not understand technology'}
 
 #Functio that create the bot characteristics
 def create_bot(company, problem, characteristics):
@@ -24,7 +26,7 @@ def prompt_input():
 
 #Function that genetate the conversation each time and returns the answer of the costumers from the chatGPT
 def coverstation_gen(parms, conv_until_now):
-    conv_to_send = create_bot(parms['company'],parms['problem'],parms['Characteristics'])
+    conv_to_send = create_bot(parms['CompanyType'],parms['Problem'],parms['Characteristics'])
     nlp_txt = prompt_input()
     while(nlp_txt != 'have a good day'):
         conv_to_send = conv_to_send + "Agent:" + nlp_txt
@@ -46,6 +48,6 @@ def coverstation_gen(parms, conv_until_now):
 
         
 #testing -->
-coverstation_gen(parms, "")
+#coverstation_gen(parms, "")
 
         

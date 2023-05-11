@@ -1,16 +1,25 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const path = require('path');
 
 const app = express();
+app.use(express.static(path.join(__dirname, '../frontend/build')));
 app.use(bodyParser.json());
-app.use(cors);
+//app.use(cors);
 
+app.get('/', (req, res) => {
+    console.log(__dirname);
+    res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
+
+})
 // Endpoint to handle the consolidated POST request
 app.post('/process', async (req, res) => {
     try {
       const { formData } = req.body;
-  
+      console.log(req.body);
+      console.log(formData);
+        
       // Send a GET request to the algorithm service to retrieve the result
       const algorithmResponse = await axios.get('http://localhost:4001/process');
 

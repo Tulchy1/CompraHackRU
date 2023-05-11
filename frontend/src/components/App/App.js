@@ -5,12 +5,11 @@ import InputXL from '../Input/InputXL';
 import logo from '../Images/logo.png'
 import TextArea from '../TextArea/TextArea';
 
-
 function App() {
   return (
     <div className="container mx-auto shadow p-3 my-4 rounded">
       <img src={logo} className="compraBetsLogo mx-auto img-fluid" />
-      <form className="registerForm mx-auto">
+      <form action="/process" method="post" className="registerForm mx-auto">
         <div className="row my-2">
           <Input id="Name" placeholder="Name" />
           <Input id="companyType" placeholder="Company Type" />

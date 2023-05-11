@@ -9,13 +9,13 @@ function App() {
   return (
     <div className="container mx-auto shadow p-3 my-4 rounded">
       <img src={logo} className="compraBetsLogo mx-auto img-fluid" />
-      <form action="/process" method="post" className="registerForm mx-auto">
+      <form action="http://localhost:4000/process" method="POST" className="registerForm mx-auto">
         <div className="row my-2">
           <Input id="Name" placeholder="Name" />
-          <Input id="companyType" placeholder="Company Type" />
+          <Input id="CompanyType" placeholder="Company Type" />
         </div>
-        <Select defalut="Gender" options={['Female', 'Male']} />
-        <InputXL id="charastitic" placeholder="Charastitic" />
+        <Select gender="Gender" options={['Female', 'Male']} id="Gender" />
+        <InputXL id="Characteristics" placeholder="Characteristics" />
         <TextArea id="Problem" />
 
         <input type="submit" className="btn btn-primary mx-auto my-3" id="registerButton" value="Start" />

@@ -5,7 +5,7 @@ function Input({id, placeholder, my}) {
     return (
         <div className="col-6">
             <div className={style} >
-                <input type="text" className="form-control" id={id} placeholder={placeholder} required />
+                <input type="text" className="form-control" id={id} name={id} placeholder={placeholder} required />
                 <label htmlFor={id}>{placeholder}</label>
             </div>
         </div>

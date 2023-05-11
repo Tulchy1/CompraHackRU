@@ -1,5 +1,5 @@
 
-function Select({ defalut, options }) {
+function Select({ gender, options, id, name }) {
 
     const createOption = (element) => {
         return (
@@ -8,8 +8,8 @@ function Select({ defalut, options }) {
     };
 
     return (
-        <select className="form-select my-4 py-2" aria-label="">
-            <option selected disabled>{defalut}</option>
+        <select id={id} name={id} className="form-select my-4 py-2" aria-label="">
+            <option selected disabled>{ gender }</option>
             {options.map(createOption)}
         </select>
     )

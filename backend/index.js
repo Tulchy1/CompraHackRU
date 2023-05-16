@@ -8,6 +8,7 @@ const app = express();
 app.use(express.static(path.join(__dirname, '../frontend/build')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
+app.use(express.static(path.join(__dirname, '')));
 // app.use(cors);
 
 app.get('/', (req, res) => {
@@ -20,11 +21,11 @@ app.post('/process', async (req, res) => {
     try {
       const data = req.body;
       console.log(data);
+      res.redirect('/chatBot.html');
       // Send a GET request to the algorithm service to retrieve the result
       const algorithmResponse = await axios.post('http://127.0.0.1:4001/process', {data});
       console.log(algorithmResponse)
-      res.send(algorithmResponse);
-  
+
     } catch (error) {
       console.error('Error processing request:', error);
       res.status(500).json({ error: 'An error occurred while processing the request.' });
